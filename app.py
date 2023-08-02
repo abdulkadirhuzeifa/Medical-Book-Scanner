@@ -5,7 +5,8 @@ from langchain.llms import OpenAI
 from langchain.embeddings import OpenAIEmbeddings
 # Bring in streamlit for UI/app interface
 import streamlit as st
-
+# to use .env file
+from dotenv import load_dotenv
 # Import PDF document loaders...there's other ones as well!
 from langchain.document_loaders import PyPDFLoader
 # Import chroma as the vector store
@@ -20,7 +21,8 @@ from langchain.agents.agent_toolkits import (
 
 # Set APIkey for OpenAI Service
 # Can sub this out for other LLM providers
-os.environ['OPENAI_API_KEY'] = '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'
+load_dotenv()  # take environment variables from .env.
+os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_API_KEY")
 
 # Create instance of OpenAI LLM
 llm = OpenAI(temperature=0.1, verbose=True)
